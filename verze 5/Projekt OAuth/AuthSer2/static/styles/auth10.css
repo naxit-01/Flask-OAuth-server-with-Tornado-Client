@@ -1,0 +1,56 @@
+@charset "UTF-8";
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background-image: url('/static/pictures/pexels-abdallah-maqboul-1591305.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 765px;
+    text-align: center;
+    margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-weight: 400;
+  flex-direction: column;
+  position: relative;
+  font-family: Hack, monospace;
+}
+div {
+    position: absolute;
+    top: 187px;
+    left: 480px;
+    width: 600px;
+    height: 400px;
+    color: rgb(0, 0, 0);
+
+}
+
+div.absolute {
+    position: absolute;
+    top: 180px;
+    left: 460px;
+    width: 640px;
+    height: 440px;
+    border: 3px solid #73AD21;
+    background-color: rgb(79, 82, 82);
+    opacity: 0.3;
+  }
+
+h1 {
+    color: rgb(5, 3, 3);
+    font-size: 50px;
+
+  }
+
+p {
+    color: rgb(5, 3, 3);
+    font-size: 20px;
+  }
+
+
+
+

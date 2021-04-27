@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auth10.css') }}"> 
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/button3.css') }}"> 
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/checkbox1.css') }}"> 
+  </head>
+
+  <body> 
+    <div class="absolute"> </div>
+    <div>
+      <h1>Authorization Server</h1>
+      <p>
+        The application <strong>{{grant.client.client_name}}</strong> is requesting:<strong>{{ grant.request.scope }}</strong>
+      </p>
+
+      <p>
+        from You - a.k.a. <strong>{{ user.username }}</strong>
+      </p>
+
+      <form action="" method="post">
+        <input id="check" name="confirm" type='checkbox' onclick="myFunction()"/>
+        <label for='check'>Agree?</label>
+
+                {% if not user %}
+        <p>You haven't logged in. Log in with:</p>
+      
+        <input type="text" name="username">
+        
+        {% endif %}
+        <br>
+        <button class="login-btn" id="submit_button" name="submit_button" disabled>Submit</button>
+        <button class="logout-btn" name="changeuser_button">Change user</button>
+        <br>
+
+      </form>
+    </div>
+    <script>
+      function myFunction() {
+      var checkBox = document.getElementById("check");
+      if (checkBox.checked == true){
+
+        document.getElementById("submit_button").disabled = false;
+      } else {
+        document.getElementById("submit_button").disabled = true;
+
+  }
+}
+    </script>
+  </body>
+</html>

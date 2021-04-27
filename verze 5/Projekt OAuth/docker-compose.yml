@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  authSer:
+    image: python_flask
+    build:
+      context: .\AuthSer2
+    ports:
+      - 5000:5000
+    volumes:
+      - C:\Users\admin\source\Docker-Kontejnery\Projekt_OAuth-docker:/var/lib/docker/volumes/
+  FirSer:
+    image: python_tornado
+    build:
+      context: ./FirSer
+    ports:
+      - 9999:9999
+    volumes:
+      - C:\Users\admin\source\Docker-Kontejnery\Projekt_OAuth-docker:/var/lib/docker/volumes/
