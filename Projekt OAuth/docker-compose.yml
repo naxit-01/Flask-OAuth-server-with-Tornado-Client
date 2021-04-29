@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  authServer:
+    image: authserver_flask
+    build:
+      context: ./AuthServer
+    networks:
+        # you may set custom IP addresses
+      front:
+        ipv4_address: "172.16.238.10" 
+    ports:
+      - 5000:5000
+    volumes:
+      - C:\ProgramData\Docker:/var/lib/docker/volumes/
+  Client:
+    image: client_tornado
+    build:
+      context: ./Client_sample
+    ports:
+      - 9999:9999
+    volumes:
+      - C:\ProgramData\Docker:/var/lib/docker/volumes/
+
+networks:
+    front:
+        ipam:
+            driver: default
+            config:
+                - subnet: "172.16.238.0/24"
