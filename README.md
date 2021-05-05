@@ -1,11 +1,11 @@
-### Project OAuth
+# Project OAuth
 Project OAuth provides an implementation of Flask OAuthorization server using Authlib. We also provide our own sample Client in python/tornado. It can be used in regular environment, but the main usage is implemented using docker.
 You can quick start the project by running compose.bat. You can then open your browser on adress http://localhost:9999 to connect to the Client_sample. Authorization server runs on http://localhost:5000. There are sample users: user1, user2, user3 - all with password "user".
 
 ## Guide for connecting other clients
 Before any connection can take place, you need to register the client in authorization server. Run it and open your browser with http://127.0.0.1:5000. Logg in with any name and proceed to registration. If you do not understand the options, read about OAuth protocol. Currently implemented grant type is authorization_code with response type code. Our sample client is allowed scope: profile. After you register, be sure to save client ID and client secret.
 
-# Flow example
+### Flow example
 1. Redirect to http://localhost:5000/oauth/authorize
 with response_type, client_id and scope as URL parameters. It equals to the values you registered. Authorization server has your redirect URL, which you also registered, and will redirect back to your server, when it is done with user login. If user login is successful, you will receive a code as part of the redirect URL. The code equals to term request token.
 2. Make a POST request to http://172.16.238.1:5000/oauth/token (if you are using docker)
@@ -22,11 +22,11 @@ The flow is presented in the Client_sample and you may use it as a reference.
 ## File system
 The project is made of two web servers, open authentication server and sample client server.
 
-# Auth Server
+### Auth Server
 This server is written in flask. The flask application is setup in app.py and works with code from the website folder. Aside from website, there are templates and static folders, containing html and css files. There is also an sqlite database.
 The website folder contains additional moduls for the app and default setting in settings.py. Database.py deals with sqlite database, routes.py handles html requests and oauth2.py uses autlib to provide secure grant types.
 
-# Sample Client Server
+### Sample Client Server
 It is written in python/tornado. Most of it is written in main.py. The only modul is in the moduls folder and handles html requests asynchronously. Templates folder contains html files.
 
 ## Configuration
@@ -40,3 +40,12 @@ The refresh token grant is currently not functional. If you want to use it, unco
 
 ## Running outside docker
 It is possible to run both servers outside of docker, but you will need to change IP adresses first. Authorization server adress is configured in app.py, at the very bottom. In the sample client server, change global variables in main.py.
+
+## Adding Open Authorization into your client
+If you have a custom implementation of a client server and wish to add an open authorization method you need to do the following:
+1. Create a sign-in button
+This is usually done on the main page, but feel free to create the button wherever you want to. You do not need any additional user input.
+2. Activate the button
+Pressing the button sends a POST request to the same part of your server, that rendered the page. Be prepared to handle intention of the user to sign in.
+3. Go with the flow
+What should follow in your code is the common exchange of information between client server and authorization server. This information flow is described in the "Flow example" section above.
