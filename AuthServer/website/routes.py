@@ -154,7 +154,7 @@ def revoke_token():
 '''
 
 @bp.route('/api/me')
-@require_oauth('profile')
+@require_oauth('profile') #Bylo definovano pri tvorbe clienta o jake informace muze zadat a zde je popsana funkce pro "profile"
 def api_me():
     '''Returns requested user information in json format'''
     user = current_token.user
