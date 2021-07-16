@@ -20,10 +20,10 @@ class User(db.Model):
     def get_user_id(self):
         return self.id
 
-'''
+    '''
     def check_password(self, password): 
         return password == 'valid'
-'''
+    '''
 
     def checkPassword(self, password):
         return self.password == password
@@ -56,13 +56,13 @@ class OAuth2Token(db.Model, OAuth2TokenMixin):
         db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
     user = db.relationship('User')
 
-'''
+    '''
     def is_refresh_token_active(self):
         if self.revoked:
             return False
         expires_at = self.issued_at + self.expires_in
         return expires_at >= time.time()
-'''
+    '''
 
     def delete_access_token(self, client_ID):
         '''Deletes access token from database'''
